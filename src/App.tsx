@@ -1,5 +1,6 @@
 import './App.css';
 
+import { Button } from 'antd';
 import { useState } from 'react';
 
 import viteLogo from '/vite.svg';
@@ -21,7 +22,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
+        <Button type="primary" onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
