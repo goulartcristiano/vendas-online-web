@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+
+import { getAuthorizatonToken, setAuthorizationToken } from '../functions/connection/auth';
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
 interface NotificationProps {
   message: string;
@@ -33,7 +35,16 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
 export const useGlobalContext = () => {
   const { globalData, setGlobalData } = useContext(GlobalContext);
+
+  useEffect(() => {
+    const token = getAuthorizatonToken();
+    if (token) {
+      setAccessToken(token);
+    }
+  }, []);
+
   const setAccessToken = (accessToken: string) => {
+    setAuthorizationToken(accessToken);
     setGlobalData({
       ...globalData,
       accessToken,
